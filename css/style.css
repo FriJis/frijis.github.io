@@ -45,6 +45,7 @@ body {
     position: fixed;
     color: white;
     top: 0;
+    box-sizing: border-box;
     left: 0;
     transform: translateY(100%);
     transition: .5s ease-in-out;
