@@ -1,5 +1,8 @@
 import './style.scss'
 
+window.addEventListener('load', () => {
+    document.querySelector('.loader').classList.add('disable')
+})
 
 window.curSection = 1
 const sections = document.querySelectorAll('section')
@@ -13,8 +16,8 @@ const draw = () => {
         i.classList.remove('active')
     })
 
-        document.querySelector(`section.el_${curSection}`).classList.add('active')
-        document.querySelector(`.dots .dot[page="${curSection}"]`).classList.add('active')
+    document.querySelector(`section.el_${curSection}`).classList.add('active')
+    document.querySelector(`.dots .dot[page="${curSection}"]`).classList.add('active')
 }
 
 const drawDots = () => {
@@ -23,7 +26,7 @@ const drawDots = () => {
     dots.classList.add('dots')
     for (let i = 1; i <= countSections; i++) {
         let dot = document.createElement('div')
-        dot.classList.add('dot')        
+        dot.classList.add('dot')
         dot.setAttribute('page', i)
         dots.append(dot)
     }
