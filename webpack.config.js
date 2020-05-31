@@ -12,6 +12,13 @@ module.exports = {
             {
                 test: /\.ttf/,
                 loader: 'file-loader',
+            },
+            {
+                test: /\.js/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
             }
         ],
     },
