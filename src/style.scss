@@ -131,7 +131,7 @@ body {
     background: #ffbe76;
     color: white;
     img {
-        height: 50px;
+        height: 70px;
         position: absolute;
         left: 0;
         transform: translateX(-50px);
@@ -159,7 +159,8 @@ body {
     }
 }
 
-.el_3, .el_4 {
+.el_3,
+.el_4 {
     background: #535c68;
     color: white;
     .cards {
@@ -169,8 +170,9 @@ body {
         left: 50%;
         transform: translate(-50%, 100vh);
         flex-direction: column;
-        transition: transform .5s ease-in-out ;
+        transition: transform 0.5s ease-in-out;
         .card {
+            text-decoration: none;
             width: var(--width-card);
             display: flex;
             border-radius: 5px;
@@ -185,7 +187,7 @@ body {
                 padding: 0 20px;
             }
         }
-        .card::before{
+        .card::before {
             content: attr(data-before);
             position: absolute;
             top: 10px;
@@ -259,7 +261,8 @@ body {
 .el_3 .card:hover {
     box-shadow: 0 0 11px 0px black;
 }
-.el_3.active, .el_4.active {
+.el_3.active,
+.el_4.active {
     .cards {
         transform: translate(-50%, 0px);
     }
@@ -267,4 +270,3 @@ body {
 .el_4 .card:hover {
     box-shadow: 0 0 11px 0px black;
 }
-

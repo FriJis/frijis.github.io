@@ -33,7 +33,7 @@ const drawDots = () => {
     document.body.append(dots)
     //creator
 
-    document.querySelectorAll('.dots .dot').forEach(item => { //add event
+    document.querySelectorAll('.dots .dot').forEach(item => { //add event dots
         item.addEventListener('click', e => {
             curSection = parseInt(e.target.getAttribute('page'))
             draw()
@@ -41,10 +41,25 @@ const drawDots = () => {
     })
 }
 
-document.addEventListener('wheel', e => {
-    if (e.deltaY < 0 && curSection > 1) {
+window.deltaTime= {
+    minTime: 400,
+    setTime(){
+        this.cur = new Date()
+    },
+    delta() {
+        if(new Date() - this.cur > this.minTime){
+            this.setTime()
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+document.addEventListener('wheel', e => { // scrolling
+    if (e.deltaY < 0 && curSection > 1 && deltaTime.delta()) {
         curSection -= 1
-    } else if (e.deltaY > 0 && curSection < countSections) {
+    } else if (e.deltaY > 0 && curSection < countSections && deltaTime.delta()) {
         curSection += 1
     }
     draw()
@@ -52,4 +67,5 @@ document.addEventListener('wheel', e => {
 
 drawDots()
 draw()
+deltaTime.setTime()
 
