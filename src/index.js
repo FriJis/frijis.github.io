@@ -41,13 +41,13 @@ const drawDots = () => {
     })
 }
 
-window.deltaTime= {
+window.deltaTime = {
     minTime: 400,
-    setTime(){
+    setTime() {
         this.cur = new Date()
     },
     delta() {
-        if(new Date() - this.cur > this.minTime){
+        if (new Date() - this.cur > this.minTime) {
             this.setTime()
             return true
         } else {
@@ -59,12 +59,29 @@ window.deltaTime= {
 document.addEventListener('wheel', e => { // scrolling
     if (e.deltaY < 0 && curSection > 1 && deltaTime.delta()) {
         curSection -= 1
-    } else if (e.deltaY > 0 && curSection < countSections && deltaTime.delta()) {
+    }
+    if (e.deltaY > 0 && curSection < countSections && deltaTime.delta()) {
         curSection += 1
     }
     draw()
 })
 
+document.addEventListener('keydown', e => {
+    if (e.code == 'ArrowUp' && curSection > 1) {
+        curSection -= 1
+    }
+    if (e.code == 'ArrowDown' && curSection < countSections) {
+        curSection += 1
+    }
+    draw()
+})
+
+const warning = () => {
+    if(innerWidth < 750 || innerHeight < 770) {
+        document.querySelector('.warning').classList.remove('disable')
+    }
+}
+warning()
 drawDots()
 draw()
 deltaTime.setTime()
