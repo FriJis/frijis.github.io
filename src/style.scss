@@ -5,6 +5,9 @@ h3,
 h4 {
     font-family: helv-b;
 }
+:root {
+    --width-card: 600px;
+}
 p,
 pre {
     font-family: helv-l;
@@ -33,7 +36,7 @@ body {
         height: 2px;
         background: white;
         position: absolute;
-        transition: 0.5s cubic-bezier(0.69, 0.01, 0.29, 0.99);
+        transition: width 0.5s cubic-bezier(0.69, 0.01, 0.29, 0.99);
         top: 60%;
     }
     h1 {
@@ -156,25 +159,48 @@ body {
     }
 }
 
-.el_3 {
+.el_3, .el_4 {
     background: #535c68;
     color: white;
-    .card {
-        width: 300px;
+    .cards {
+        display: flex;
         position: absolute;
-        left: 0;
-        border-radius: 5px;
-        bottom: 0;
-        padding: 20px 20px 0 20px;
-        transition: transform 0.6s cubic-bezier(0.52, 0.28, 0.31, 1), box-shadow 0.2s;
-        background: white;
-        transform: translate(0, 0);
-        text-align: center;
-        color: black;
+        top: 70px;
+        left: 50%;
+        transform: translate(-50%, 100vh);
+        flex-direction: column;
+        transition: transform .5s ease-in-out ;
+        .card {
+            width: var(--width-card);
+            display: flex;
+            border-radius: 5px;
+            position: relative;
+            padding: 20px;
+            margin: 10px 0;
+            transition: transform 0.8s cubic-bezier(0.52, 0.28, 0.31, 1), box-shadow 0.2s;
+            background: white;
+            text-align: center;
+            color: black;
+            .block {
+                padding: 0 20px;
+            }
+        }
+        .card::before{
+            content: attr(data-before);
+            position: absolute;
+            top: 10px;
+            left: -10px;
+            background: #ff7979;
+            padding: 5px 10px;
+            font-family: helv-b;
+            color: white;
+            box-shadow: 4px 3px 0 0px rgba(0, 0, 0, 0.42);
+        }
     }
+
     img {
         border: 1px solid rgba(0, 0, 0, 0.38);
-        width: 100%;
+        width: 200px;
         box-sizing: border-box;
         border-radius: 5px;
     }
@@ -182,31 +208,6 @@ body {
 
 .el_4 {
     background: #b2bec3;
-    color: white;
-    .card {
-        border-radius: 5px;
-        width: 300px;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        padding: 20px 20px 0 20px;
-        transition: transform 0.6s cubic-bezier(0.6, 1.28, 0.41, 0.93) 0.3s, box-shadow 0.2s;
-        background: white;
-        text-align: center;
-        color: black;
-    }
-    .card.card_1 {
-        transform: translate(20vw, 100vh);
-    }
-    .card.card_2 {
-        transform: translate(60vw, 100vh);
-    }
-    img {
-        border-radius: 5px;
-        border: 1px solid rgba(0, 0, 0, 0.38);
-        width: 100%;
-        box-sizing: border-box;
-    }
 }
 
 .el_5 {
@@ -258,25 +259,12 @@ body {
 .el_3 .card:hover {
     box-shadow: 0 0 11px 0px black;
 }
-.el_3.active .card.card_1 {
-    transform: translate(20vw, -55vh);
+.el_3.active, .el_4.active {
+    .cards {
+        transform: translate(-50%, 0px);
+    }
 }
-.el_3.active .card.card_2 {
-    transform: translate(60vw, -55vh);
-}
-.el_3.active .card.card_3 {
-    transform: translate(20vw, -15vh);
-}
-.el_3.active .card.card_4 {
-    transform: translate(60vw, -15vh);
-}
-
 .el_4 .card:hover {
     box-shadow: 0 0 11px 0px black;
 }
-.el_4.active .card.card_1 {
-    transform: translate(20vw, -55vh);
-}
-.el_4.active .card.card_2 {
-    transform: translate(60vw, -55vh);
-}
+
