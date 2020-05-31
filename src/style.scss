@@ -30,6 +30,7 @@ body {
     width: 100vw;
     background: #686de0;
     z-index: 100;
+    transition-property: transform, visibility;
     transition: 0.5s ease-in-out 1.2s;
     color: white;
     .line {
