@@ -1,3 +1,5 @@
+import './style.scss'
+
 
 window.curSection = 1
 const sections = document.querySelectorAll('section')
