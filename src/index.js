@@ -76,11 +76,11 @@ document.addEventListener('keydown', e => {
     draw()
 })
 
-const warning = () => {
-    if(innerWidth < 750 || innerHeight < 770) {
-        document.querySelector('.warning').classList.remove('disable')
-    }
-}
+// const warning = () => {
+//     if(innerWidth < 750 || innerHeight < 770) {
+//         document.querySelector('.warning').classList.remove('disable')
+//     }
+// }
 warning()
 drawDots()
 draw()
