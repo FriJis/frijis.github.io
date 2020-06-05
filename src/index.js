@@ -81,7 +81,7 @@ document.addEventListener('keydown', e => {
 //         document.querySelector('.warning').classList.remove('disable')
 //     }
 // }
-warning()
+// warning()
 drawDots()
 draw()
 deltaTime.setTime()
