@@ -6,20 +6,15 @@ window.addEventListener('load', () => {
 
 window.curSection = 1
 const sections = document.querySelectorAll('section')
-window.countSections = sections.length
+const countSections = sections.length
 
-const draw = () => {
-    sections.forEach(i => {
-        i.classList.remove('active')
+const init = () => {
+    sections.forEach((item, index) => {
+        if (item.offsetTop <= pageYOffset + (innerHeight / 2)) {
+            curSection = index + 1
+        }
     })
-    document.querySelectorAll('.dots .dot').forEach(i => {
-        i.classList.remove('active')
-    })
-
-    document.querySelector(`section.el_${curSection}`).classList.add('active')
-    document.querySelector(`.dots .dot[page="${curSection}"]`).classList.add('active')
 }
-
 const drawDots = () => {
     //creator
     let dots = document.createElement('div')
@@ -36,53 +31,36 @@ const drawDots = () => {
     document.querySelectorAll('.dots .dot').forEach(item => { //add event dots
         item.addEventListener('click', e => {
             curSection = parseInt(e.target.getAttribute('page'))
+            let y = document.querySelector(`.el_${curSection}`).offsetTop
+            window.scroll(0, y)
             draw()
         })
     })
 }
+const draw = () => {
+    sections.forEach(i => {
+        i.classList.remove('active')
+    })
+    document.querySelectorAll('.dots .dot').forEach(i => {
+        i.classList.remove('active')
+    })
 
-window.deltaTime = {
-    minTime: 400,
-    setTime() {
-        this.cur = new Date()
-    },
-    delta() {
-        if (new Date() - this.cur > this.minTime) {
-            this.setTime()
-            return true
-        } else {
-            return false
-        }
-    }
+    document.querySelector(`section.el_${curSection}`).classList.add('active')
+    document.querySelector(`.dots .dot[page="${curSection}"]`).classList.add('active')
 }
 
-document.addEventListener('wheel', e => { // scrolling
-    if (e.deltaY < 0 && curSection > 1 && deltaTime.delta()) {
-        curSection -= 1
+
+
+
+window.addEventListener('scroll', e => { // scrolling
+    let prevSec = curSection
+    init()
+    if (prevSec !== curSection) {
+        draw()
     }
-    if (e.deltaY > 0 && curSection < countSections && deltaTime.delta()) {
-        curSection += 1
-    }
-    draw()
 })
 
-document.addEventListener('keydown', e => {
-    if (e.code == 'ArrowUp' && curSection > 1) {
-        curSection -= 1
-    }
-    if (e.code == 'ArrowDown' && curSection < countSections) {
-        curSection += 1
-    }
-    draw()
-})
-
-// const warning = () => {
-//     if(innerWidth < 750 || innerHeight < 770) {
-//         document.querySelector('.warning').classList.remove('disable')
-//     }
-// }
-// warning()
+init()
 drawDots()
 draw()
-deltaTime.setTime()
 
