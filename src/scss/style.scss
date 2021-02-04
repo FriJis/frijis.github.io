@@ -1,0 +1,62 @@
+@import "./fonts.css";
+@import "./mainClasses.scss";
+
+$navWidth: 50px;
+
+main {
+    nav {
+        width: $navWidth;
+        z-index: 2;
+        position: fixed;
+        top: 0;
+        left: 0;
+        .inner {
+            width: 300px;
+            .h {
+                padding: 20px 30px;
+                font-size: 30px;
+                font-family: helv-b;
+            }
+            .btn {
+                padding: 10px;
+                /* font-family: helv-b; */
+                font-size: 20px;
+                transition: 0.15s;
+                transition-property: background;
+                letter-spacing: 3px;
+                color: rgba(0, 0, 0, 0.53);
+                i {
+                    width: 30px;
+                    text-align: center;
+                }
+                &:hover,
+                &.active {
+                    background: #d5d5d5;
+                }
+            }
+        }
+    }
+    section {
+        // width: calc(100% - #{$navWidth});
+        padding-left: #{$navWidth};
+        background: #e6e6e6;
+        // height: 100vh;
+        // overflow-y: auto;
+        box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.4);
+        // transform: translateX(250px);
+        z-index: 2;
+        article {
+            min-height: 100vh;
+            padding-left: 20px;
+
+            @import "./components/profile.scss";
+            @import "./components/technology.scss";
+            @import "./components/contacts.scss";
+            .h {
+                font-family: helv-b;
+                font-size: 100px;
+                padding: 100px 0;
+            }
+        }
+    }
+}

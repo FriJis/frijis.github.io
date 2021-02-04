@@ -10,15 +10,12 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
             {
-                test: /\.ttf/,
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
                 loader: 'file-loader',
             },
             {
-                test: /\.js/,
+                test: /\.(js|jsx)/,
                 loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env']
-                }
             }
         ],
     },

@@ -1,66 +1,38 @@
-import './style.scss'
+import './scss/style.scss'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './app.jsx'
 
-window.addEventListener('load', () => {
-    document.querySelector('.loader').classList.add('disable')
-})
+ReactDOM.render(<App></App>, document.querySelector('#app'))
 
-window.curSection = 1
-const sections = document.querySelectorAll('section')
-const countSections = sections.length
+// import navG from './modules/navGenerator'
+// import cursorM from './modules/cursor'
+// import navOpener from './modules/navOpener'
 
-const init = () => {
-    sections.forEach((item, index) => {
-        if (item.offsetTop <= pageYOffset + (innerHeight / 2)) {
-            curSection = index + 1
-        }
-    })
-}
-const drawDots = () => {
-    //creator
-    let dots = document.createElement('div')
-    dots.classList.add('dots')
-    for (let i = 1; i <= countSections; i++) {
-        let dot = document.createElement('div')
-        dot.classList.add('dot')
-        dot.setAttribute('page', i)
-        dots.append(dot)
-    }
-    document.body.append(dots)
-    //creator
+// const articles = document.querySelectorAll('article')
+// const navbar = document.querySelector('#navbar')
+// const navigator = new navG({ articles, container: navbar })
 
-    document.querySelectorAll('.dots .dot').forEach(item => { //add event dots
-        item.addEventListener('click', e => {
-            curSection = parseInt(e.target.getAttribute('page'))
-            let y = document.querySelector(`.el_${curSection}`).offsetTop
-            window.scroll(0, y)
-            draw()
-        })
-    })
-}
-const draw = () => {
-    sections.forEach(i => {
-        i.classList.remove('active')
-    })
-    document.querySelectorAll('.dots .dot').forEach(i => {
-        i.classList.remove('active')
-    })
+// const navs = navigator.init()
+// navigator.render()
+// navs.forEach(({ btn, offsetTop }) => {
+//     btn.addEventListener('click', () => {
+//         document.documentElement.scrollTo(0, offsetTop)
+//     })
+// })
 
-    document.querySelector(`section.el_${curSection}`).classList.add('active')
-    document.querySelector(`.dots .dot[page="${curSection}"]`).classList.add('active')
-}
+// document.addEventListener('scroll', e => {
+//     navigator.renderActiveClass()
+// })
 
+// const navOp = new navOpener({nav: navbar})
 
+// // navOp.open()
+// navOp.initEvent()
 
-
-window.addEventListener('scroll', e => { // scrolling
-    let prevSec = curSection
-    init()
-    if (prevSec !== curSection) {
-        draw()
-    }
-})
-
-init()
-drawDots()
-draw()
-
+// const cursor = new cursorM({
+//     style: ['cursor'],
+//     activators: document.querySelectorAll('.btn')
+// })
+// cursor.init()
+// setInterval(() => cursor.render(), 20)
